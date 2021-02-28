@@ -1,13 +1,3 @@
-/** EL2208 Praktikum Pemecahan Masalah dengan C 2020/2021
-*   Modul               : 
-*   Soal                : 1
-*   Hari dan Tanggal    : 
-*   Nama (NIM)          : 
-*   Asisten (NIM)       : 
-*   Nama File           : soal-01.c
-*   Deskripsi           : Deskripsi file ini.
-*/
-
 #include "stdio.h"
 #define MAX_SIZE 100
 
@@ -29,9 +19,58 @@ int main(){
     inputDegree(&degree);
     rotateMatrix(size, mat, degree);
     printMatrix(size, mat);
-    
-    // Format print untuk membantu autograding
-    // printf("%d ", mat[i][j]);
-    
     return 1;
+}
+
+
+void askSize(int *size){
+    printf("Masukkan ukuran: ");
+    scanf("%d", size);
+}
+
+void getMatrix(int size, int mat[size][size]){
+    printf("Masukkan matrix:\n");
+    int i,j;
+    for (i = 0; i < size; i++){
+        for (j = 0; j < size; j++){
+            scanf("%d", &(mat[i][j]));
+        }
+    }
+}
+
+void printMatrix(int size, int mat[size][size]){
+    int i,j;
+    for (i = 0; i < size; i++){
+        for (j = 0; j < size; j++){
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void inputDegree(int *degree){
+    printf("Masukkan sudut rotasi: ");
+    scanf("%d", degree);
+}
+
+void rotate90Clock(int size, int mat[size][size]){
+    int i, j;
+    for (i = 0; i < size/2; i++){
+        for (j = i; j < size - i - 1; j++){
+            int temp = mat[i][j];
+            mat[i][j] = mat[size - 1 -j][i];
+            mat[size - 1 -j][i] = mat[size - 1 - i][size - 1 - j];
+            mat[size - 1 - i][size - 1 - j] = mat[j][size - 1 - i];
+            mat[j][size - 1 - i] = temp;
+        }
+    }
+}
+
+void rotateMatrix(int size, int mat[size][size], int degree){
+    int degree_new = degree % 360;
+    int times = degree_new / 90 ;
+    while (times--){
+        rotate90Clock(size,mat);
+    }
+    
 }
