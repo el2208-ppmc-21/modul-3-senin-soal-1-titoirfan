@@ -19,7 +19,7 @@ int main(){
     inputDegree(&degree);
     rotateMatrix(size, mat, degree);
     printMatrix(size, mat);
-    return 1;
+    return 0;
 }
 
 
