@@ -42,7 +42,10 @@ void printMatrix(int size, int mat[size][size]){
     int i,j;
     for (i = 0; i < size; i++){
         for (j = 0; j < size; j++){
-            printf("%d ", mat[i][j]);
+            if (j != size - 1)
+                printf("%d ", mat[i][j]);
+            else
+                printf("%d", mat[i][j]);
         }
         printf("\n");
     }
